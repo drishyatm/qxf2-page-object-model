@@ -38,7 +38,6 @@ class Cars_API_Endpoints(Base_API):
 		"gets given car details"
 		url = self.cars_url('/find?')+url_params
 		json_response = self.get(url,headers=headers)
-		time.sleep(5)
 		return {
 			'url':url,
 			'response':json_response['json_response']
