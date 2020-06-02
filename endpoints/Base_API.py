@@ -23,7 +23,6 @@ class Base_API:
         error = {}
         try:
             response = requests.get(url=url,headers=headers)
-            time.sleep(10)
             try:
                 json_response = response.json()
             except:
@@ -51,7 +50,6 @@ class Base_API:
         json_response = None
         try:
             response = requests.post(url,params=params,json=json,headers=headers)
-            time.sleep(10)
             try:
                 json_response = response.json()
             except:
@@ -78,7 +76,6 @@ class Base_API:
         error = {}
         try:
             response = requests.delete(url,headers = headers)
-            time.sleep(10)
             try:
                 json_response = response.json()
             except:
@@ -106,7 +103,6 @@ class Base_API:
         response = False
         try:
             response = requests.put(url,json=json,headers=headers)
-            time.sleep(10)
             try:
                 json_response = response.json()
             except:
