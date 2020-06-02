@@ -8,6 +8,7 @@ from requests.auth import HTTPBasicAuth
 from urllib.error import HTTPError
 from urllib.error import URLError
 from conf import api_example_conf as conf
+import time
 
 class Base_API:
     "Main base class for Requests based scripts"
@@ -22,6 +23,7 @@ class Base_API:
         error = {}
         try:
             response = requests.get(url=url,headers=headers)
+            time.sleep(5)
             try:
                 json_response = response.json()
             except:
@@ -49,6 +51,7 @@ class Base_API:
         json_response = None
         try:
             response = requests.post(url,params=params,json=json,headers=headers)
+            time.sleep(5)
             try:
                 json_response = response.json()
             except:
@@ -75,6 +78,7 @@ class Base_API:
         error = {}
         try:
             response = requests.delete(url,headers = headers)
+            time.sleep(5)
             try:
                 json_response = response.json()
             except:
@@ -102,6 +106,7 @@ class Base_API:
         response = False
         try:
             response = requests.put(url,json=json,headers=headers)
+            time.sleep(5)
             try:
                 json_response = response.json()
             except:

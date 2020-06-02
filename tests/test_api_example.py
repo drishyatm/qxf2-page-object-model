@@ -36,6 +36,7 @@ def test_api_example(api_url='http://35.167.62.251/'):
         auth_details = test_obj.set_auth_details(username, password)
 
         initial_car_count = test_obj.get_car_count(auth_details)
+        time.sleep(3)
 
 
         # add cars
@@ -50,6 +51,7 @@ def test_api_example(api_url='http://35.167.62.251/'):
 
         # Get Cars and verify if new car is added
         result_flag = test_obj.get_cars(auth_details)
+        time.sleep(5)
 
         result_flag = test_obj.verify_car_count(expected_count=initial_car_count+1,
                                                 auth_details=auth_details)
