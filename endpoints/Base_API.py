@@ -8,7 +8,6 @@ from requests.auth import HTTPBasicAuth
 from urllib.error import HTTPError
 from urllib.error import URLError
 from conf import api_example_conf as conf
-import time
 
 class Base_API:
     "Main base class for Requests based scripts"

@@ -154,7 +154,7 @@ class API_Player(Results):
         self.write('\n*****Verifying car count******')
         car_count = self.get_cars(auth_details)
         car_count = len(car_count['cars_list'])
-
+        self.write(msg='Car count is :%d' %car_count)
         return car_count
 
 
