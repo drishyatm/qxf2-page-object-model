@@ -6,6 +6,8 @@ jobs:
 
       docker:
         - image: themattrix/tox
+      
+      resource_class: xlarge
 
       parallelism: 3
 
