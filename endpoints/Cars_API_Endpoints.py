@@ -3,6 +3,7 @@ API endpoints for Cars
 """
 
 from .Base_API import Base_API
+import time
 import json
 
 class Cars_API_Endpoints(Base_API):
@@ -16,6 +17,7 @@ class Cars_API_Endpoints(Base_API):
 	def add_car(self,data,headers):
 		"Adds a new car"
 		url = self.cars_url('/add')
+		time.sleep(5)
 		json_response = self.post(url,json=data,headers=headers)
 		return {
 			'url':url,
@@ -26,6 +28,7 @@ class Cars_API_Endpoints(Base_API):
 	def get_cars(self,headers):
 		"gets list of cars"
 		url = self.cars_url()
+		time.sleep(5)
 		json_response = self.get(url,headers=headers)
 		return {
 			'url':url,
@@ -37,6 +40,7 @@ class Cars_API_Endpoints(Base_API):
 		"gets given car details"
 		url = self.cars_url('/find?')+url_params
 		json_response = self.get(url,headers=headers)
+		time.sleep(5)
 		return {
 			'url':url,
 			'response':json_response['json_response']
