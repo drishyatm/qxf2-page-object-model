@@ -24,15 +24,19 @@ jobs:
         - run: git clone https://github.com/qxf2/cars-api.git
 
         - run: pip install flask
-        
+       
         - run:
             name: Run different Tox environments on different Containers
             command: |
                if [ $CIRCLE_NODE_INDEX == "0" ] ; then python cars-api/cars_app.py; fi
-               if [ $CIRCLE_NODE_INDEX == "0" ] ; then tox -e py36 ; fi
                if [ $CIRCLE_NODE_INDEX == "1" ] ; then python cars-api/cars_app.py; fi
-               if [ $CIRCLE_NODE_INDEX == "1" ] ; then tox -e py37 ; fi
                if [ $CIRCLE_NODE_INDEX == "2" ] ; then python cars-api/cars_app.py; fi
+
+        - run:
+            name: Run different Tox environments on different Containers
+            command: |
+               if [ $CIRCLE_NODE_INDEX == "0" ] ; then tox -e py36 ; fi
+               if [ $CIRCLE_NODE_INDEX == "1" ] ; then tox -e py37 ; fi
                if [ $CIRCLE_NODE_INDEX == "2" ] ; then tox -e py38 ; fi
 
         - store_artifacts:
