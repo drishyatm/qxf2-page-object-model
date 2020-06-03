@@ -23,6 +23,8 @@ jobs:
         
         - run: git clone https://github.com/qxf2/cars-api.git
         
+        - run: pip install flask
+        
         - run:
             name: Run different Tox environments on different Containers
             command: |
