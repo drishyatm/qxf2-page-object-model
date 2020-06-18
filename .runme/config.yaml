@@ -2,9 +2,7 @@ version: 1.0
 publish: app
 services:
   app:
-    build:
-      type: dockerfile
-      config: ./.runme/Dockerfile
+    image: qxf2_pom_essentials:latest
     ports:
       - container: 3000
         public: 80
