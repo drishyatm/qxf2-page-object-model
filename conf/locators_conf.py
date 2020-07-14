@@ -14,5 +14,6 @@
 
 # Locators for the login_page
 
-username = "xpath, // INPUT[@id = 'sign_up_form_email']"
-password = "xpath, //INPUT[@id='sign_up_form_password']"
+username = "xpath,//INPUT[@id='user_login']"
+password = "xpath,//INPUT[@id='login__user_password']"
+login_button = "xpath,//BUTTON[@id='user_submit']"
