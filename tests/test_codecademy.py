@@ -2,14 +2,15 @@
 This test file will help you get started in writing a new test using our framework
 """
 import pytest
-from utils.Option_Parser import Option_Parser
-from page_objects.PageFactory import PageFactory
-import os
-import sys
+
 import time
+import sys
+import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from page_objects.PageFactory import PageFactory
 
+from utils.Option_Parser import Option_Parser
 @pytest.mark.GUI
 def test_codecademy(test_obj):
     "Run the test"
@@ -22,7 +23,7 @@ def test_codecademy(test_obj):
         start_time = int(time.time())
 
         # This is the test object, you can change it to the desired page with relevance to the page factory
-        test_obj = PageFactory.get_page_object("")
+        test_obj = PageFactory.get_page_object("main page")
 
         # 13. Print out the result
         test_obj.write_test_summary()
@@ -45,7 +46,7 @@ if __name__ == '__main__':
 
     # Run the test only if the options provided are valid
     if options_obj.check_options(options):
-        test_obj = PageFactory.get_page_object("login", base_url=options.url)
+        test_obj = PageFactory.get_page_object("Zero", base_url=options.url)
 
         # Setup and register a driver
         test_obj.register_driver(options.remote_flag, options.os_name, options.os_version, options.browser,

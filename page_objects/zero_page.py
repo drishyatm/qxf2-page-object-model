@@ -5,6 +5,7 @@ Please do not modify or delete this page
 """
 from .Base_Page import Base_Page
 
+
 class Zero_Page(Base_Page):
     "Page Object for the dummy page"
 
