@@ -7,10 +7,10 @@ import sys
 import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from utils.Option_Parser import Option_Parser
-from page_objects.PageFactory import PageFactory
-import conf.login_page_conf as conf
 import pytest
+import conf.login_page_conf as conf
+from page_objects.PageFactory import PageFactory
+from utils.Option_Parser import Option_Parser
 
 @pytest.mark.GUI
 def test_codecademy(test_obj):
@@ -32,9 +32,6 @@ def test_codecademy(test_obj):
         #  Get the test details from the conf file
         user_name = conf.user_name
         code_password = conf.password
-
-        print("username", user_name)
-        print("password", code_password)
 
         #  Set username  in login
         result_flag = test_obj.set_user_name(user_name)

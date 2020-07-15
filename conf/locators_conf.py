@@ -17,3 +17,6 @@
 username = "xpath,//INPUT[@id='user_login']"
 password = "xpath,//INPUT[@id='login__user_password']"
 login_button = "xpath,//BUTTON[@id='user_submit']"
+
+# Locators for codecademy home page(codecademy_home_page.py)
+heading = "xpath,//title[contains(text()='Dashboard | Codecademy']"

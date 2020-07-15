@@ -13,6 +13,7 @@ class Codecademy_Login_Page_Objects:
     user_name_field = locators.username
     code_password = locators.password
     login_button = locators.login_button
+    redirect_title = "Dashboard"
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -51,32 +52,21 @@ class Codecademy_Login_Page_Objects:
 
         return result_flag
 
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def check_redirect(self):
+        "Check if we have been redirected to the redirect page"
+        result_flag = False
+        if self.redirect_title in self.driver.title:
+            result_flag = True
+            self.switch_page("Home page")
+
+        return result_flag
+
     """    
-    @Wrapit._exceptionHandler
-    @Wrapit._screenshot
-    def set_phone(self, phone):
-        "Set the phone on the form"
-        result_flag = self.set_text(self.phone_no_field, phone)
-        self.conditional_write(result_flag,
-                               positive='Set the phone to: %s' % phone,
-                               negative='Failed to set the phone in the form',
-                               level='debug')
+   
 
-        return result_flag
-
-    @Wrapit._exceptionHandler
-    @Wrapit._screenshot
-    def set_gender(self, gender, wait_seconds=1):
-        "Set the gender on the form"
-        result_flag = self.click_element(self.gender_dropdown)
-        self.wait(wait_seconds)
-        result_flag &= self.click_element(self.gender_option % gender)
-        self.conditional_write(result_flag,
-                               positive='Set the gender to: %s' % gender,
-                               negative='Failed to set the gender in the form',
-                               level='debug')
-
-        return result_flag
+    
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -90,16 +80,7 @@ class Codecademy_Login_Page_Objects:
 
         return result_flag
 
-    @Wrapit._exceptionHandler
-    @Wrapit._screenshot
-    def check_redirect(self):
-        "Check if we have been redirected to the redirect page"
-        result_flag = False
-        if self.redirect_title in self.driver.title:
-            result_flag = True
-            self.switch_page("redirect")
-
-        return result_flag
+   
     """
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -108,11 +89,12 @@ class Codecademy_Login_Page_Objects:
         result_flag = self.set_user_name(username)
         result_flag &= self.set_password(password)
         result_flag &= self.log_in()
+        result_flag &= self.check_redirect()
         """
         result_flag &= self.set_phone(phone)
         result_flag &= self.set_gender(gender)
         result_flag &= self.accept_terms()
         
-        result_flag &= self.check_redirect()
+        
         """
         return result_flag

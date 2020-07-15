@@ -14,6 +14,7 @@ Pages implemented so far:
 import conf.base_url_conf
 from page_objects.zero_page import Zero_Page
 from page_objects.tutorial_main_page import Tutorial_Main_Page
+from page_objects.codecademy_home_page import Codecademy_Home_Page
 
 """
 from page_objects.tutorial_redirect_page import Tutorial_Redirect_Page
@@ -33,6 +34,8 @@ class PageFactory():
             test_obj = Zero_Page(base_url=base_url)
         elif page_name == "main page":
             test_obj = Tutorial_Main_Page(base_url=base_url)
+        elif page_name == "home page":
+            test_obj = Codecademy_Home_Page(base_url=base_url)
         else:
             print("not working AAA")
 
