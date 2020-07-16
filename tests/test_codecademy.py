@@ -2,20 +2,19 @@
 This test file will help you get started in writing a new test using our framework
 """
 
+
 import os
 import sys
 import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-import pytest
-import conf.login_page_conf as conf
-from page_objects.PageFactory import PageFactory
 from utils.Option_Parser import Option_Parser
+from page_objects.PageFactory import PageFactory
+import conf.login_page_conf as conf
 
-@pytest.mark.GUI
 def test_codecademy(test_obj):
     "Run the test"
     try:
+    
         # Initalize flags for tests summary
         expected_pass = 0
         actual_pass = -1
@@ -32,7 +31,8 @@ def test_codecademy(test_obj):
         #  Get the test details from the conf file
         user_name = conf.user_name
         code_password = conf.password
-
+        
+        """
         #  Set username  in login
         result_flag = test_obj.set_user_name(user_name)
         test_obj.log_result(result_flag,
@@ -48,12 +48,41 @@ def test_codecademy(test_obj):
                             negative="Failed to set Password: %s \nOn url: %s\n" % (code_password, test_obj.get_current_url()))
         test_obj.write('Script duration: %d seconds\n' %
                        (int(time.time() - start_time)))
-
+        """
         # Set and log in to Codecademy
         result_flag = test_obj.submit_form(user_name, code_password)
         test_obj.log_result(result_flag,
                             positive="Successfully submitted the form\n",
                             negative="Failed to submit the form \nOn url: %s" % test_obj.get_current_url(),
+                            level="critical")
+
+        # Selecting course from catalog
+        result_flag = test_obj.go_to_catalog()
+        test_obj.log_result(result_flag,
+                            positive="Catalog check was successful\n",
+                            negative="Catalog looks wrong.%s" % test_obj.get_current_url(),
+                            level="critical")
+        test_obj.write('Script duration: %d seconds\n' %
+                       (int(time.time()-start_time)))
+        #test_obj.add_tesults_case("Check copyright", "Checks the copyright", "test_example_form", result_flag,
+                                 # "Copyright looks wrong.\nObtained the copyright%s\n" % test_obj.get_copyright(), [])
+
+        result_flag = test_obj.select_course()
+        test_obj.log_result(result_flag,
+                            positive="Successfully Clicked the Course in Catalog page\n",
+                            negative="Failed to Click the course in Catalog page \nOn url: %s" % test_obj.get_current_url(),
+                            level="critical")
+        
+        result_flag = test_obj.select_course_sql()
+        test_obj.log_result(result_flag,
+                            positive="Successfully Identified the Course SQL\n",
+                            negative="Failed to Identify the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
+                            level="critical")
+
+        result_flag = test_obj.select_enroll_course_sql()
+        test_obj.log_result(result_flag,
+                            positive="Successfully enrolled the Course SQL\n",
+                            negative="Failed to enroll the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
                             level="critical")
 
         # 13. Print out the result
@@ -90,4 +119,4 @@ if __name__ == '__main__':
         test_obj.teardown()
     else:
         print('ERROR: Received incorrect comand line input arguments')
-        print(option_obj.print_usage())
+        print(options_obj.print_usage())
