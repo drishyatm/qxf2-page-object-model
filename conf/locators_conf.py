@@ -19,4 +19,20 @@ password = "xpath,//INPUT[@id='login__user_password']"
 login_button = "xpath,//BUTTON[@id='user_submit']"
 
 # Locators for codecademy home page(codecademy_home_page.py)
-heading = "xpath,//title[contains(text()='Dashboard | Codecademy']"
+heading = "xpath,//title[text()='Dashboard | Codecademy']"
+catalog_path = "xpath,//A[text()='Catalog']"
+
+
+# Locators for codecademy catalog page(codecademy_catalog_page.py)
+heading_catalog = "xpath,//title[text()='All Courses & Tutorials | Codecademy']"
+sql_course_path = "xpath,//A[@href='/catalog/language/sql'][text()='SQL']"
+
+# Locators for codecademy sql course page(codecademy_sql_course_page.py)
+heading_course_sql = "xpath,//title[text() = 'SQL Courses & Tutorials | Codecademy']"
+recommended_path_sql = "xpath,//H2[text() = 'Recommended']"
+recommeded_course_sql_path = "xpath,//a[@href='/learn/learn-sql'][@data-testid='curriculum-card-learn-sql']"
+
+
+# Locators for codecademy enroll sql course page(codecademy_enroll_sql_course_page.py)
+heading_learn_sql = "xpath,//title[text() = 'Learn SQL | Codecademy']"
+enroll_course_button = "xpath,//A[@aria-label='Start Course'][text()='Start']/ancestor::header"
