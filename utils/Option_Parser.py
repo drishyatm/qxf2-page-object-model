@@ -21,7 +21,7 @@ class Option_Parser:
         "Set options shared by all tests over here"
         self.parser.add_option("-B", "--browser",
                                dest="browser",
-                               default="firefox",
+                               default="chrome",
                                help="Browser. Valid options are firefox, ie and chrome")
         self.parser.add_option("-U", "--app_url",
                                dest="url",
