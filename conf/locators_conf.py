@@ -23,7 +23,7 @@ heading = "xpath,//title[text()='Dashboard | Codecademy']"
 catalog_path = "xpath,//A[text()='Catalog']"
 search_icon = "xpath,//BUTTON[@data-testid='header-search']"
 search_type_text_area= "xpath,//input[@name='query']"
-
+popular_search_area = "xpath,//BUTTON[text()='HTML']"
 
 # Locators for codecademy catalog page(codecademy_catalog_page.py)
 heading_catalog = "xpath,//title[text()='All Courses & Tutorials | Codecademy']"

@@ -19,7 +19,8 @@ class Codecademy_Home_Page(Base_Page):
     #locator for the search course 
     search_icon = locators.search_icon
     search_type_text_area = locators.search_type_text_area
-    redirect_title_search ="Search"
+    redirect_title_search = "Search"
+    popular_search_area=locators.popular_search_area
 
     def start(self):
         "Use this method to go to specific URL -- if needed"
@@ -101,6 +102,17 @@ class Codecademy_Home_Page(Base_Page):
        print("Verified the title in search")    
        return result_flag
 
+    def select_popular_search(self):
+        "Click on the Popular search options "
+        result_flag = self.click_element(self.popular_search_area)
+        self.conditional_write(result_flag,
+                               positive='Clicked on the Popular search options on home page',
+                               negative='Could not click on the Search bar on home page',
+                               level='debug')
+
+        return result_flag
+
+
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -120,6 +132,9 @@ class Codecademy_Home_Page(Base_Page):
         result_flag &= self.set_search_course(search_text_course)
         result_flag &= self.search_course_enter()
         result_flag &= self.verify_title_Search()
+        result_flag &= self.click_search_bar()
+        result_flag &=self.select_popular_search()
+
 
         print("search_course return statement", result_flag)
         return result_flag  
