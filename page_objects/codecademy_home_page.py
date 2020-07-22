@@ -19,6 +19,7 @@ class Codecademy_Home_Page(Base_Page):
     #locator for the search course 
     search_icon = locators.search_icon
     search_type_text_area = locators.search_type_text_area
+    redirect_title_search ="Search"
 
     def start(self):
         "Use this method to go to specific URL -- if needed"
@@ -90,6 +91,17 @@ class Codecademy_Home_Page(Base_Page):
 
         return result_flag
 
+    def verify_title_Search(self):
+       "Check if we have been redirected to the redirect page"
+       result_flag = False
+
+       if self.redirect_title_search in self.driver.title:
+           result_flag = True
+
+       print("Verified the title in search")    
+       return result_flag
+
+
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
     def go_to_catalog(self):
@@ -107,6 +119,7 @@ class Codecademy_Home_Page(Base_Page):
         result_flag = self.click_search_bar()
         result_flag &= self.set_search_course(search_text_course)
         result_flag &= self.search_course_enter()
+        result_flag &= self.verify_title_Search()
 
         print("search_course return statement", result_flag)
         return result_flag  
