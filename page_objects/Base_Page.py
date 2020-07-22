@@ -636,15 +636,19 @@ class Base_Page(Borg, unittest.TestCase):
 
     def hit_enter(self, locator, wait_time=2):
         "Hit enter"
+        result_flag = False
         try:
             element = self.get_element(locator)
             element.send_keys(Keys.ENTER)
+            result_flag = True
             self.wait(wait_time)
         except Exception as e:
             self.write(str(e), 'debug')
             self.exceptions.append("An exception occurred when hitting enter")
-            return None
-
+            #return result_flag
+        
+        return result_flag
+        
     def scroll_down(self, locator, wait_time=2):
         "Scroll down"
         try:
