@@ -3,6 +3,8 @@ This test file will help you get started in writing a new test using our framewo
 """
 
 
+
+
 import os
 import sys
 import time
@@ -10,6 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.Option_Parser import Option_Parser
 from page_objects.PageFactory import PageFactory
 import conf.login_page_conf as conf
+import conf.home_page_conf as home_page_conf
 
 def test_codecademy(test_obj):
     "Run the test"
@@ -28,11 +31,13 @@ def test_codecademy(test_obj):
         # Turn on the highlighting feature
         test_obj.turn_on_highlight()
 
-        #  Get the test details from the conf file
+        #  Get the login details from the conf file for login page
         user_name = conf.user_name
         code_password = conf.password
         
-       
+        #  Get the  details from the conf file for home page
+        search_text_course = home_page_conf.search_text_course
+     
         # Set and log in to Codecademy
         result_flag = test_obj.submit_form(user_name, code_password)
         test_obj.log_result(result_flag,
@@ -41,7 +46,7 @@ def test_codecademy(test_obj):
                             level="critical")
 
         # Selecting course from catalog
-        result_flag = test_obj.go_to_catalog()
+        result_flag = test_obj.search_course(search_text_course)
         test_obj.log_result(result_flag,
                             positive="Catalog check was successful\n",
                             negative="Catalog looks wrong.%s" % test_obj.get_current_url(),
@@ -50,7 +55,7 @@ def test_codecademy(test_obj):
                        (int(time.time()-start_time)))
         #test_obj.add_tesults_case("Check copyright", "Checks the copyright", "test_example_form", result_flag,
                                  # "Copyright looks wrong.\nObtained the copyright%s\n" % test_obj.get_copyright(), [])
-
+        """
         result_flag = test_obj.select_course()
         test_obj.log_result(result_flag,
                             positive="Successfully Clicked the Course in Catalog page\n",
@@ -68,7 +73,7 @@ def test_codecademy(test_obj):
                             positive="Successfully enrolled the Course SQL\n",
                             negative="Failed to enroll the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
                             level="critical")
-
+        """                    
         # 13. Print out the result
         test_obj.write_test_summary()
         expected_pass = test_obj.result_counter

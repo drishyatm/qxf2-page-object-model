@@ -8,14 +8,17 @@ import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
 
 
+
 class Codecademy_Home_Page(Base_Page):
     "Page Object for the Codecademy Home page"
 
     # locators
     heading = locators.heading
-    
     catalog_path = locators.catalog_path
     redirect_title_catalog = "All Courses & Tutorials"
+    #locator for the search course 
+    search_icon = locators.search_icon
+    search_type_text_area = locators.search_type_text_area
 
     def start(self):
         "Use this method to go to specific URL -- if needed"
@@ -50,13 +53,41 @@ class Codecademy_Home_Page(Base_Page):
     def check_redirect_catalog(self):
         "Check if we have been redirected to the redirect page"
         result_flag = False
-        print(self.driver.title)
+        
         if self.redirect_title_catalog in self.driver.title:
             result_flag = True
             self.switch_page("Catalog page")
         
         
         return result_flag
+
+    def click_search_bar(self):
+        "Click on the search bar"
+        result_flag = self.click_element(self.search_icon)
+        self.conditional_write(result_flag,
+                               positive='Clicked on the catalog on home page',
+                               negative='Could not click on the catalog on home page',
+                               level='debug')
+
+        return result_flag
+
+    def set_search_course(self, search_text_course):
+        "type the course in seach bar"
+        result_flag = self.set_text(self.search_type_text_area, search_text_course)
+        self.conditional_write(result_flag,
+                               positive='Set the course_name to: %s' % search_text_course,
+                               negative='Failed to set the name in the search bar',
+                               level='debug')
+
+        return result_flag
+
+    def search_course_enter(self):
+        result_flag = self.hit_enter(self.search_type_text_area)
+        self.conditional_write(result_flag,
+                               positive='Hit the enter',
+                               negative='Failed to hit the enter after the search bar',
+                               level='debug')
+
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -65,5 +96,15 @@ class Codecademy_Home_Page(Base_Page):
         result_flag = self.check_heading_home()
         result_flag &= self.click_catalog()
         result_flag &= self.check_redirect_catalog()
-        print("gotocatalog",result_flag)
+        
         return result_flag
+
+    @Wrapit._exceptionHandler
+    @Wrapit._screenshot
+    def search_course(self, search_text_course):
+        "Click the search and enter the course name and search for it"
+        result_flag = self.click_search_bar()
+        result_flag &= self.set_search_course(search_text_course)
+        result_flag &= self.search_course_enter()
+
+        return result_flag  
