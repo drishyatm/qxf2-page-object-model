@@ -65,8 +65,8 @@ class Codecademy_Home_Page(Base_Page):
         "Click on the search bar"
         result_flag = self.click_element(self.search_icon)
         self.conditional_write(result_flag,
-                               positive='Clicked on the catalog on home page',
-                               negative='Could not click on the catalog on home page',
+                               positive='Clicked on the Search bar on home page',
+                               negative='Could not click on the Search bar on home page',
                                level='debug')
 
         return result_flag
@@ -88,6 +88,7 @@ class Codecademy_Home_Page(Base_Page):
                                negative='Failed to hit the enter after the search bar',
                                level='debug')
 
+        return result_flag
 
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
@@ -107,4 +108,5 @@ class Codecademy_Home_Page(Base_Page):
         result_flag &= self.set_search_course(search_text_course)
         result_flag &= self.search_course_enter()
 
+        print("search_course return statement", result_flag)
         return result_flag  
