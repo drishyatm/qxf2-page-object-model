@@ -23,11 +23,12 @@ heading = "xpath,//title[text()='Dashboard | Codecademy']"
 catalog_path = "xpath,//A[text()='Catalog']"
 search_icon = "xpath,//BUTTON[@data-testid='header-search']"
 search_type_text_area= "xpath,//input[@name='query']"
-popular_search_area = "xpath,//BUTTON[text()='HTML']"
+popular_search_area = "xpath,//BUTTON[text()='%s']"
+search_redirect_page_check = "xpath,//div//span[text()='1']"
 
 # Locators for codecademy catalog page(codecademy_catalog_page.py)
 heading_catalog = "xpath,//title[text()='All Courses & Tutorials | Codecademy']"
-sql_course_path = "xpath,//A[@href='/catalog/language/sql'][text()='SQL']"
+sql_course_path = "xpath,//A[text()='%s']"
 
 # Locators for codecademy sql course page(codecademy_sql_course_page.py)
 heading_course_sql = "xpath,//title[text() = 'SQL Courses & Tutorials | Codecademy']"
