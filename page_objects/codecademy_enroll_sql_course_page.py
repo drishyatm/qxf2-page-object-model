@@ -5,9 +5,9 @@ from .Base_Page import Base_Page
 
 
 """
-This class models the redirect page of the Selenium tutorial
-URL: selenium-tutorial-redirect
-The page consists of a header, footer and some text
+This class models the Codecademy page of the Enrolling the course 
+URL: learn/learn-sql
+Verify the heading, click on start button of the course and verify the redirect
 """
 
 
@@ -39,7 +39,7 @@ class Codecademy_Enroll_SQL_Course_Page(Base_Page):
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
     def click_start_course(self):
-        " Click the SQL course in SQL Course page"
+        " Click the Start button in Learn SQL Course page"
         result_flag = self.click_element(self.enroll_course_button)
         self.conditional_write(result_flag,
                                positive='Clicked on the Start button  in the Learn SQL course page ',
@@ -55,7 +55,7 @@ class Codecademy_Enroll_SQL_Course_Page(Base_Page):
         print(self.driver.title)
         if self.redirect_title_course in self.driver.title:
             result_flag = True
-            self.switch_page("Learn SQL course page")
+            #self.switch_page("Learn SQL course page")
 
         return result_flag
 
