@@ -6,6 +6,7 @@ The page consists of a header, footer and some text
 from .Base_Page import Base_Page
 import conf.locators_conf as locators
 from utils.Wrapit import Wrapit
+import conf.home_page_conf as home_page_conf
 
 
 
@@ -15,12 +16,14 @@ class Codecademy_Home_Page(Base_Page):
     # locators
     heading = locators.heading
     catalog_path = locators.catalog_path
-    redirect_title_catalog = "All Courses & Tutorials"
+    redirect_title_catalog = home_page_conf.redirect_title_catalog
     #locator for the search course 
     search_icon = locators.search_icon
     search_type_text_area = locators.search_type_text_area
-    redirect_title_search = "Search"
-    popular_search_area=locators.popular_search_area
+    search_redirect_page_check = locators.search_redirect_page_check
+    redirect_title_search = home_page_conf.redirect_title_search
+    popular_search_area = locators.popular_search_area
+    course_name = home_page_conf.course_name
 
     def start(self):
         "Use this method to go to specific URL -- if needed"
@@ -92,7 +95,7 @@ class Codecademy_Home_Page(Base_Page):
 
         return result_flag
 
-    def verify_title_Search(self):
+    def verify_title_search(self):
        "Check if we have been redirected to the redirect page"
        result_flag = False
 
@@ -104,7 +107,7 @@ class Codecademy_Home_Page(Base_Page):
 
     def select_popular_search(self):
         "Click on the Popular search options "
-        result_flag = self.click_element(self.popular_search_area)
+        result_flag = self.click_element(self.popular_search_area%self.course_name)
         self.conditional_write(result_flag,
                                positive='Clicked on the Popular search options on home page',
                                negative='Could not click on the Search bar on home page',
@@ -112,6 +115,15 @@ class Codecademy_Home_Page(Base_Page):
 
         return result_flag
 
+    def verify_course_list(self):
+        "verifying the courses are displayed as per search"
+        result_flag = self.check_element_present(self.search_redirect_page_check)
+        self.conditional_write(result_flag,
+                               positive='List of courses Displayed on the Home page',
+                               negative='No courses selected for %s!'%self.course_name,
+                               level='debug')
+
+        return result_flag
 
 
     @Wrapit._exceptionHandler
@@ -131,10 +143,12 @@ class Codecademy_Home_Page(Base_Page):
         result_flag = self.click_search_bar()
         result_flag &= self.set_search_course(search_text_course)
         result_flag &= self.search_course_enter()
-        result_flag &= self.verify_title_Search()
+        result_flag &= self.verify_title_search()
+        result_flag &= self.verify_course_list()
         result_flag &= self.click_search_bar()
         result_flag &= self.select_popular_search()
-        result_flag &= self.verify_title_Search()
+        result_flag &= self.verify_title_search()
+        result_flag &= self.verify_course_list()
 
 
         print("search_course return statement", result_flag)
