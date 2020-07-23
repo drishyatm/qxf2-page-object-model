@@ -14,7 +14,7 @@ Pages implemented so far:
 
 import conf.base_url_conf
 from page_objects.zero_page import Zero_Page
-from page_objects.codecademy_login_page import Codecademy_Login_page
+from page_objects.codecademy_login_page import Codecademy_Login_Page
 from page_objects.codecademy_home_page import Codecademy_Home_Page
 from page_objects.codecademy_catalog_page import Codecademy_Catalog_Page
 from page_objects.codecademy_sql_course_page import Codecademy_SQL_Course_Page
@@ -30,7 +30,7 @@ class PageFactory():
         if page_name in ["zero", "zero page", "agent zero"]:
             test_obj = Zero_Page(base_url=base_url)
         elif page_name == "main page":
-            test_obj = Codecademy_Login_page(base_url=base_url)
+            test_obj = Codecademy_Login_Page(base_url=base_url)
         elif page_name == "home page":
             test_obj = Codecademy_Home_Page(base_url=base_url)
         elif page_name == "catalog page":
