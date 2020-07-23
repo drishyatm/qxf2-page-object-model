@@ -1,7 +1,13 @@
 """
-This test file will help you get started in writing a new test using our framework
+Testing the end to end scenario for Codecademy- Enrolling for a course
+Logging in will redirect to home page
+Click on the Catalog in the Home page
+Catalog will show the list of the course
+Select the course, Here I selected SQL
+SQL course page will show with the list of courses related to the SQL
+Verify the recommended course and select the recommened course
+Click the start to enroll for the course
 """
-
 
 import os
 import sys
@@ -14,7 +20,6 @@ import conf.login_page_conf as conf
 def test_codecademy(test_obj):
     "Run the test"
     try:
-    
         # Initalize flags for tests summary
         expected_pass = 0
         actual_pass = -1
@@ -22,7 +27,7 @@ def test_codecademy(test_obj):
         # Set start_time with current time
         start_time = int(time.time())
 
-        # This is the test object, you can change it to the desired page with relevance to the page factory
+        # This is the test object for the main page
         test_obj = PageFactory.get_page_object("Main page")
 
         # Turn on the highlighting feature
@@ -30,11 +35,10 @@ def test_codecademy(test_obj):
 
         #  Get the test details from the conf file
         user_name = conf.user_name
-        code_password = conf.password
-        
-       
+        codecademy_password = conf.password
+               
         # Set and log in to Codecademy
-        result_flag = test_obj.submit_form(user_name, code_password)
+        result_flag = test_obj.submit_form(user_name, codecademy_password)
         test_obj.log_result(result_flag,
                             positive="Successfully submitted the form\n",
                             negative="Failed to submit the form \nOn url: %s" % test_obj.get_current_url(),
@@ -46,8 +50,7 @@ def test_codecademy(test_obj):
                             positive="Catalog check was successful\n",
                             negative="Catalog looks wrong.%s" % test_obj.get_current_url(),
                             level="critical")
-        test_obj.write('Script duration: %d seconds\n' %
-                       (int(time.time()-start_time)))
+      
        
 
         result_flag = test_obj.select_course()
@@ -68,7 +71,9 @@ def test_codecademy(test_obj):
                             negative="Failed to enroll the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
                             level="critical")
 
-        # 13. Print out the result
+        # Print out the result
+        test_obj.write('Script duration: %d seconds\n' %
+                       (int(time.time()-start_time)))
         test_obj.write_test_summary()
         expected_pass = test_obj.result_counter
         actual_pass = test_obj.pass_counter

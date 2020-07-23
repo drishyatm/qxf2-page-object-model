@@ -1,10 +1,12 @@
 """
-This test file will help you get started in writing a new test using our framework
+This is for end to end scenario for searching course . 
+Logging in to the codecademy
+Home page click the search icon 
+Type the search course name 
+verify the search page with title 
+Click on search icon again 
+click on any of the popular search course ( selected html)
 """
-
-
-
-
 import os
 import sys
 import time
