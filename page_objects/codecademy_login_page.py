@@ -10,7 +10,7 @@ from .codecademy_login_page_objects import Codecademy_Login_Page_Objects
 
 
 class Codecademy_Login_page(Base_Page, Codecademy_Login_Page_Objects):
-    "Page Object for the tutorial's main page"
+    "Page Object for the Codecademy Login page"
 
     def start(self):
         "Use this method to go to specific URL -- if needed"
