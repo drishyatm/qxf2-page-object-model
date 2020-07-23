@@ -48,8 +48,7 @@ def test_codecademy(test_obj):
                             level="critical")
         test_obj.write('Script duration: %d seconds\n' %
                        (int(time.time()-start_time)))
-        #test_obj.add_tesults_case("Check copyright", "Checks the copyright", "test_example_form", result_flag,
-                                 # "Copyright looks wrong.\nObtained the copyright%s\n" % test_obj.get_copyright(), [])
+       
 
         result_flag = test_obj.select_course()
         test_obj.log_result(result_flag,

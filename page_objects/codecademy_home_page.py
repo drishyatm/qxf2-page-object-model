@@ -133,7 +133,8 @@ class Codecademy_Home_Page(Base_Page):
         result_flag &= self.search_course_enter()
         result_flag &= self.verify_title_Search()
         result_flag &= self.click_search_bar()
-        result_flag &=self.select_popular_search()
+        result_flag &= self.select_popular_search()
+        result_flag &= self.verify_title_Search()
 
 
         print("search_course return statement", result_flag)

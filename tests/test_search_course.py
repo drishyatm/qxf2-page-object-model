@@ -48,33 +48,14 @@ def test_codecademy(test_obj):
         # Selecting course from catalog
         result_flag = test_obj.search_course(search_text_course)
         test_obj.log_result(result_flag,
-                            positive="Catalog check was successful\n",
-                            negative="Catalog looks wrong.%s" % test_obj.get_current_url(),
+                            positive="Course in search bar was successful\n",
+                            negative="Search looks wrong.%s" % test_obj.get_current_url(),
                             level="critical")
         test_obj.write('Script duration: %d seconds\n' %
                        (int(time.time()-start_time)))
-        #test_obj.add_tesults_case("Check copyright", "Checks the copyright", "test_example_form", result_flag,
-                                 # "Copyright looks wrong.\nObtained the copyright%s\n" % test_obj.get_copyright(), [])
-        """
-        result_flag = test_obj.select_course()
-        test_obj.log_result(result_flag,
-                            positive="Successfully Clicked the Course in Catalog page\n",
-                            negative="Failed to Click the course in Catalog page \nOn url: %s" % test_obj.get_current_url(),
-                            level="critical")
         
-        result_flag = test_obj.select_course_sql()
-        test_obj.log_result(result_flag,
-                            positive="Successfully Identified the Course SQL\n",
-                            negative="Failed to Identify the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
-                            level="critical")
-
-        result_flag = test_obj.select_enroll_course_sql()
-        test_obj.log_result(result_flag,
-                            positive="Successfully enrolled the Course SQL\n",
-                            negative="Failed to enroll the course in SQL page \nOn url: %s" % test_obj.get_current_url(),
-                            level="critical")
-        """                    
-        # 13. Print out the result
+        
+        #  Print out the result
         test_obj.write_test_summary()
         expected_pass = test_obj.result_counter
         actual_pass = test_obj.pass_counter
