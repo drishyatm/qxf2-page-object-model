@@ -12,7 +12,7 @@ The page consists of a header, footer and some text
 
 
 class Codecademy_Enroll_SQL_Course_Page(Base_Page):
-    "Page Object for the Catalog page"
+    "Page Object for the Enroll Course Page page"
 
     # locators
     heading_learn_sql = locators.heading_learn_sql
