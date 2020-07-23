@@ -63,25 +63,6 @@ class Codecademy_Login_Page_Objects:
 
         return result_flag
 
-    """    
-   
-
-    
-
-    @Wrapit._exceptionHandler
-    @Wrapit._screenshot
-    def accept_terms(self):
-        "Accept the terms and conditions"
-        result_flag = self.select_checkbox(self.tac_checkbox)
-        self.conditional_write(result_flag,
-                               positive='Accepted the terms and conditions',
-                               negative='Failed to accept the terms and conditions',
-                               level='debug')
-
-        return result_flag
-
-   
-    """
     @Wrapit._exceptionHandler
     @Wrapit._screenshot
     def submit_form(self, username, password):
@@ -90,11 +71,5 @@ class Codecademy_Login_Page_Objects:
         result_flag &= self.set_password(password)
         result_flag &= self.log_in()
         result_flag &= self.check_redirect()
-        """
-        result_flag &= self.set_phone(phone)
-        result_flag &= self.set_gender(gender)
-        result_flag &= self.accept_terms()
-        
-        
-        """
+
         return result_flag
